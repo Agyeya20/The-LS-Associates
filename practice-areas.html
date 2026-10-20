@@ -646,7 +646,7 @@
         <div>
           <span class="eyebrow" style="color:var(--brass-light);">Get In Touch</span>
           <h2>Tell us about your matter.</h2>
-          <p>Share a brief outline of your matter. A senior partner — not an intake bot — will review it and respond within one business day.</p>
+          <p>Share a brief outline of your matter. Our team will review it and respond within one business day.</p>
         </div>
         <form class="cta-form lsa-form">
           <input type="hidden" name="access_key" value="a51a020c-8197-412d-8ed5-03b0776c7142">
@@ -654,10 +654,10 @@
           <input type="hidden" name="from_name" value="LS Associates Website">
           <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
                     <span class="eyebrow">Request a Consultation</span>
-          <input type="text" name="name" placeholder="Full name" required>
-          <input type="email" name="email" placeholder="Email address" required>
-          <select name="service">
-            <option>Select a service</option>
+          <input type="text" name="name" placeholder="Full name *" required>
+          <input type="email" name="email" placeholder="Email address *" required>
+          <select name="service" required>
+            <option value="" disabled selected>Select a service *</option>
             <option>Corporate Governance &amp; Company Law</option>
             <option>Contracts &amp; Commercial Compliance</option>
             <option>Corporate Litigation &amp; Arbitration</option>
@@ -705,7 +705,7 @@
       <div>
         <h5>Contact</h5>
         <ul>
-          <li>4th Floor, DLF Prime Towers<br>Okhla Phase III, New Delhi – 110020</li>
+          <li>Malviya Nagar, South Delhi<br>New Delhi – 110017</li>
           <li>legal@thelsassociates.com</li>
         </ul>
       </div>
@@ -859,7 +859,7 @@
         if (json.success) {
           form.reset();
           status.style.color = '#1B4E4B';
-          status.textContent = 'Thank you. Your request has been received and a managing partner will respond within one business day.';
+          status.textContent = 'Thank you. Your request has been received and our team will respond within one business day.';
         } else { throw new Error(json.message || 'failed'); }
       } catch (err) {
         status.style.color = '#9B2C2C';

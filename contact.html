@@ -530,7 +530,7 @@
       <span class="breadcrumb"><a href="index.html">Home</a> / Contact</span>
       <span class="eyebrow">Get In Touch</span>
       <h1>Start with a conversation.</h1>
-      <p>Reach out directly, or share a few details below and a managing partner will respond within one business day.</p>
+      <p>Reach out directly, or share a few details below and our team will respond within one business day.</p>
     </div>
   </section>
 
@@ -542,7 +542,7 @@
         <div class="contact-info-list">
           <div class="contact-info-item">
             <div class="icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><path d="M9 17s6-5.5 6-10a6 6 0 00-12 0c0 4.5 6 10 6 10z" stroke="#1B4E4B" stroke-width="1.6"/><circle cx="9" cy="7" r="2.2" stroke="#1B4E4B" stroke-width="1.6"/></svg></div>
-            <div><h4>Office</h4><p>4th Floor, DLF Prime Towers, Okhla Phase III,<br>New Delhi &ndash; 110020</p></div>
+            <div><h4>Office</h4><p>Malviya Nagar, South Delhi,<br>New Delhi &ndash; 110017</p></div>
           </div>
           <div class="contact-info-item">
             <div class="icon"><svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="2" y="4" width="14" height="10" rx="1.5" stroke="#1B4E4B" stroke-width="1.6"/><path d="M2.5 5l6.5 5 6.5-5" stroke="#1B4E4B" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
@@ -554,7 +554,7 @@
           </div>
         </div>
         <div class="map-frame" style="margin-top:34px;">
-          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=77.264%2C28.535%2C77.294%2C28.555&amp;layer=mapnik&amp;marker=28.545%2C77.279" title="LS Associates office location map" loading="lazy"></iframe>
+          <iframe src="https://www.openstreetmap.org/export/embed.html?bbox=77.194%2C28.525%2C77.224%2C28.545&amp;layer=mapnik&amp;marker=28.5355%2C77.2090" title="LS Associates office location map" loading="lazy"></iframe>
         </div>
       </div>
       <div class="contact-form-card">
@@ -564,19 +564,19 @@
           <input type="hidden" name="subject" value="New consultation request - thelsassociates.com">
           <input type="hidden" name="from_name" value="LS Associates Website">
           <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
-                    <input type="text" name="name" placeholder="Full name" required>
+                    <input type="text" name="name" placeholder="Full name *" required>
           <input type="text" name="company" placeholder="Company name">
-          <input type="email" name="email" placeholder="Email address" required>
-          <input type="tel" name="phone" placeholder="Phone number">
-          <select name="service">
-            <option>Select a service</option>
+          <input type="email" name="email" placeholder="Email address *" required>
+          <input type="tel" name="phone" placeholder="Phone number *" required>
+          <select name="service" required>
+            <option value="" disabled selected>Select a service *</option>
             <option>Corporate Governance &amp; Company Law</option>
             <option>Contracts &amp; Commercial Compliance</option>
             <option>Corporate Litigation &amp; Arbitration</option>
             <option>Employment &amp; Labour Law</option>
             <option>Intellectual Property Rights (IPR)</option>
           </select>
-          <textarea name="message" placeholder="Briefly describe your matter"></textarea>
+          <textarea name="message" placeholder="Briefly describe your matter *" required></textarea>
           <button type="submit" class="btn btn-primary">Submit Request</button>
         <div class="form-status" role="status" aria-live="polite" style="margin-top:12px;font-size:16.5px;"></div>
         </form>
@@ -619,7 +619,7 @@
       <div>
         <h5>Contact</h5>
         <ul>
-          <li>4th Floor, DLF Prime Towers<br>Okhla Phase III, New Delhi – 110020</li>
+          <li>Malviya Nagar, South Delhi<br>New Delhi – 110017</li>
           <li>legal@thelsassociates.com</li>
         </ul>
       </div>
@@ -773,7 +773,7 @@
         if (json.success) {
           form.reset();
           status.style.color = '#1B4E4B';
-          status.textContent = 'Thank you. Your request has been received and a managing partner will respond within one business day.';
+          status.textContent = 'Thank you. Your request has been received and our team will respond within one business day.';
         } else { throw new Error(json.message || 'failed'); }
       } catch (err) {
         status.style.color = '#9B2C2C';
