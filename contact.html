@@ -559,12 +559,16 @@
       </div>
       <div class="contact-form-card">
         <span class="eyebrow">Request a Consultation</span>
-        <form onsubmit="event.preventDefault();" style="margin-top:18px;">
-          <input type="text" placeholder="Full name" required>
-          <input type="text" placeholder="Company name">
-          <input type="email" placeholder="Email address" required>
-          <input type="tel" placeholder="Phone number">
-          <select>
+        <form class="lsa-form" style="margin-top:18px;">
+          <input type="hidden" name="access_key" value="a51a020c-8197-412d-8ed5-03b0776c7142">
+          <input type="hidden" name="subject" value="New consultation request - thelsassociates.com">
+          <input type="hidden" name="from_name" value="LS Associates Website">
+          <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" style="display:none">
+                    <input type="text" name="name" placeholder="Full name" required>
+          <input type="text" name="company" placeholder="Company name">
+          <input type="email" name="email" placeholder="Email address" required>
+          <input type="tel" name="phone" placeholder="Phone number">
+          <select name="service">
             <option>Select a service</option>
             <option>Corporate Governance &amp; Company Law</option>
             <option>Contracts &amp; Commercial Compliance</option>
@@ -572,8 +576,9 @@
             <option>Employment &amp; Labour Law</option>
             <option>Intellectual Property Rights (IPR)</option>
           </select>
-          <textarea placeholder="Briefly describe your matter"></textarea>
+          <textarea name="message" placeholder="Briefly describe your matter"></textarea>
           <button type="submit" class="btn btn-primary">Submit Request</button>
+        <div class="form-status" role="status" aria-live="polite" style="margin-top:12px;font-size:16.5px;"></div>
         </form>
         <p style="font-size:14px; color:var(--ink-soft); margin-top:16px; line-height:1.5;">As per the Bar Council of India Rules, submitting this form is at your own initiative and does not constitute solicitation. No attorney-client relationship is formed until formally engaged.</p>
       </div>
@@ -746,6 +751,38 @@
       toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
     });
   })();
+</script>
+<script>
+(function(){
+  document.querySelectorAll('form.lsa-form').forEach(function(form){
+    form.addEventListener('submit', async function(e){
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      var status = form.querySelector('.form-status');
+      var data = new FormData(form);
+      var svc = data.get('service');
+      if (svc && String(svc).indexOf('Select a service') === 0) data.set('service','Not specified');
+      var orig = btn.textContent;
+      btn.disabled = true; btn.textContent = 'Sending...';
+      status.style.color = 'inherit'; status.textContent = '';
+      try {
+        var res = await fetch('https://api.web3forms.com/submit', {
+          method:'POST', headers:{'Accept':'application/json'}, body: data
+        });
+        var json = await res.json();
+        if (json.success) {
+          form.reset();
+          status.style.color = '#1B4E4B';
+          status.textContent = 'Thank you. Your request has been received and a managing partner will respond within one business day.';
+        } else { throw new Error(json.message || 'failed'); }
+      } catch (err) {
+        status.style.color = '#9B2C2C';
+        status.textContent = 'Sorry, we could not send your request. Please email us directly at legal@thelsassociates.com.';
+      }
+      btn.disabled = false; btn.textContent = orig;
+    });
+  });
+})();
 </script>
 </body>
 </html>
